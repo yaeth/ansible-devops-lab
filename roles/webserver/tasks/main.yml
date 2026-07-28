@@ -1,0 +1,31 @@
+---
+- name: Actualizar indice de paquetes apt
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Instalar Nginx y curl
+  ansible.builtin.apt:
+    name:
+      - nginx
+      - curl
+    state: present
+
+- name: Crear pagina web personalizada
+  ansible.builtin.copy:
+    content: |
+      <!DOCTYPE html>
+      <html>
+      <head><title>Laboratorio DevOps</title></head>
+      <body>
+        <h1>¡Despliegue Exitoso con Ansible!</h1>
+        <p>Servidor administrado: {{ ansible_hostname }}</p>
+        <p>Desplegado por: Mi Servidor Ansible</p>
+      </body>
+      </html>
+    dest: /var/www/html/index.html
+    mode: '0644'
+
+- name: Iniciar y asegurar servicio Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started

@@ -1,0 +1,6 @@
+---
+- name: Despliegue y Aprovisionamiento de Servidores Web
+  hosts: webservers
+  become: true
+  roles:
+    - webserver
