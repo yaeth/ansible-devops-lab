@@ -12,10 +12,10 @@
         state: started
         restart_policy: unless-stopped
         env:
-          SSH_ENABLE_PASSWORD_AUTH: "true"
-          ansible: "ansible123"
-          SUDO_USERS: "ansible"
-          ansibleALL: "(ALL)NOPASSWD:ALL"
+          USER_NAME: "ansible"
+          USER_PASSWORD: "ansible123"
+          PASSWORD_ACCESS: "true"
+          SUDO_ACCESS: "true"
         ports:
           - "2223:22"
           - "8082:80"
