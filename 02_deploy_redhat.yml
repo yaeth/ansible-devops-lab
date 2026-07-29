@@ -1,0 +1,20 @@
+---
+- name: "Desplegar contenedor target-db-01"
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: instalar contenedor de base de datos
+      community.docker.docker_container:
+        name: target-db-01
+        image: lscr.io/linuxserver/openssh-server:latest
+        state: started
+        restart_policy: unless-stopped
+        env:
+          SSH_ENABLE_PASSWORD_AUTH: "true"
+          ansible: "ansible123"
+          SUDO_USERS: "ansible"
+          ansibleALL: "(ALL)NOPASSWD:ALL"
+        ports:
+          - "2224:22"
+          - "3307:3306"
