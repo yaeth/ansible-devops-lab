@@ -1,3 +1,5 @@
+Ini, TOML
+
 [webservers]
 target-ubuntu-01 ansible_host=localhost ansible_port=2222
 target-redhat-01 ansible_host=localhost ansible_port=2223
