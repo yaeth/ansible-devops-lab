@@ -5,17 +5,17 @@
 
   tasks:
     - name: instalacion de paquete httpd
-      ansible.builtin.dnf:
-        name: httpd
-        state: lastet
+      ansible.builtin.package:
+        name: apache2
+        state: present
 
     - name: subir el servicio
-      ansible.builtin.service:
-        name: httpd
-        state: start
-        enable: yes
+      ansible.builtin.file:
+        path: /var/www/localhost/htdocs
+        state: directory
+        mode: "0755"
 
     - name: crear html
       ansible.builtin.copy:
-        conte: "<h1>el servidor apache esta activo</h1>"
-        dest: /var/www/html/inde.html
+        content: "<h1>el servidor apache esta activo</h1>"
+        dest: /var/www/html/index.html
