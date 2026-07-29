@@ -1,22 +1,22 @@
 ---
-  - name: Instalacion de Servidor Apache
-    hosts: localhost
-    conexion: local
-    become: true
+- name: Instalacion de Servidor Apache
+  hosts: localhost
+  connection: local
+  
 
-    tasks:
-      - name: instalacion de paquete http
-        ansible.builtin.dnf:
-          name: httpd
-          state: latest
-
-      - name: habilitar el servidor
-        ansible.builtin.service:
-          name: httpd
-          state: started
-          enable: yes    
-
-      - name: crear archivo html
-        ansible.builtin.copy:
-        content: Servidor apache instalo y listo
-        dest: /var/www/html/index.html    
+  tasks:
+    - name: crear maquina target-redhat-01
+      community.docker.docker_container:
+        name: target-redhat-01
+        image: lscr.io/linuxserver/openssh-server:latest
+        state: started
+        restart_policy: unless-stopped
+        env:
+          SSH_ENABLE_PASSWORD_AUTH: "true"
+          ansible: "ansible123"
+          SUDO_USERS: "ansible"
+          ansibleALL: "(ALL)NOPASSWD:ALL"
+        ports:
+          - "2223:22"
+          - "8082:80"
+    
