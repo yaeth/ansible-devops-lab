@@ -2,6 +2,7 @@
 - name: Instalacion de Servidor Apache
   hosts: localhost
   conexion: local
+  become: true
 
   tasks:
     - name: instalacion de paquete http
