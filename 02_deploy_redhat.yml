@@ -1,0 +1,21 @@
+---
+- name: Instalacion de Servidor Apache
+  hosts: localhost
+  conexion: local
+
+  tasks:
+    - name: instalacion de paquete http
+      ansible.builtin.dnf:
+        name: httpd
+        state: latest
+
+    - name: habilitar el servidor
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enable: yes    
+
+    - name: crear archivo html
+      ansible.builtin.copy:
+      content: Servidor apache instalo y listo
+      dest: /var/www/html/index.html    
