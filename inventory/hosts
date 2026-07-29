@@ -5,4 +5,5 @@ target-redhat-01 ansible_host=localhost ansible_port=2223
 [webservers:vars]
 ansible_user=ansible
 ansible_password=ansible123
+ansible_become_password=ansible123
 ansible_ssh_common_args='-o StrictHostKeyChecking=no'

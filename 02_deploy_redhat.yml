@@ -17,6 +17,6 @@
           PASSWORD_ACCESS: "true"
           SUDO_ACCESS: "true"
         ports:
-          - "2223:22"
+          - "2223:2222"
           - "8082:80"
     
