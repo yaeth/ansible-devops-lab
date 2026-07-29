@@ -1,0 +1,20 @@
+---
+- name: Aprovisionar Servidor Ubunto Objetivo
+  hosts: localhost
+  connection: local
+  tasks:
+
+    - name: desplegar contenedor target-ubuntu-01
+      community.docker.docker_container:
+         name: target-ubuntu-01
+         image: lscr.io/linuxserver/openssh-server:latest
+         state: started
+         restart_policy: unless-stopped
+         env:
+           SSH_ENABLE_PASSWORD_AUTH: "true"
+           ansible: "ansible123"
+           SUDO_USERS: "ansible"
+           ansibleAll: "(ALL)NOPASSWD:ALL"
+         ports:
+           - "2222:22"
+           - "8081:80"  
