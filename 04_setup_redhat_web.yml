@@ -18,4 +18,4 @@
     - name: crear html
       ansible.builtin.copy:
         content: "<h1>el servidor apache esta activo</h1>"
-        dest: /var/www/html/index.html
+        dest: /var/www/localhost/htdocs/index.html
